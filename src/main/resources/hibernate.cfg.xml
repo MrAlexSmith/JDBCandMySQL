@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD//EN" "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- Добавьте настройки подключения к базе данных -->
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/db_1_1_4</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">1111dba</property>
+
+        <!-- Добавьте настройку диалекта SQL для вашей базы данных -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+
+        <!-- Добавьте настройки для генерации схемы базы данных -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <!-- Добавьте настройку расположения сущностей Hibernate -->
+        <mapping class="jm.task.core.jdbc.model.User"/>
+    </session-factory>
+</hibernate-configuration>
