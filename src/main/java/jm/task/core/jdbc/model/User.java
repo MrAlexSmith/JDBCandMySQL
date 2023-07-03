@@ -59,4 +59,19 @@ public class User {
     public void setAge(Byte age) {
         this.age = age;
     }
+
+    /**
+     * Переопределён метод 'toString()' для формирования читабельного списка пользователей из таблицы 'users' БД MySQL.
+     * @return - форматированная строка данных пользователея 'User'.
+     */
+    @Override
+    public String toString() {
+        return  "\n" +
+                "User{" +
+                "id=" + id +
+                ", name='" + name + "'" +
+                ", lastName='" + lastName + "'" +
+                ", age=" + age +
+                '}';
+    }
 }
