@@ -66,13 +66,11 @@ public class UserDaoJDBCImpl implements UserDao {
     @Override
     public void dropUsersTable() {
         String query = "DROP TABLE IF EXISTS users";
-
         try (Statement statement = connection.createStatement()) {
             statement.executeUpdate(query);
-
             System.out.println("JDBC: Таблица 'Users' успешно удалена, либо она уже была удалена ранее. <OK>");
-
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             System.out.println("JDBC: Не удалось удалить таблицу 'Users'! <ERROR>");
             e.printStackTrace();
         }
@@ -81,16 +79,14 @@ public class UserDaoJDBCImpl implements UserDao {
     @Override
     public void saveUser(String name, String lastName, byte age) {
         String query = "INSERT INTO users (name, last_name, age) VALUES (?, ?, ?)";
-
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, name);
             statement.setString(2, lastName);
             statement.setByte(3, age);
             statement.executeUpdate();
-
             System.out.println("JDBC: Пользователь '" + name + " " + lastName + " (" + age + ")' успешно добавлен в таблицу 'Users'. <OK>");
-
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             System.out.println("JDBC: Не удалось добавить пользователя '" + name + " " + lastName + " (" + age + ")' в таблицу 'Users'! <ERROR>");
             e.printStackTrace();
         }
@@ -99,14 +95,12 @@ public class UserDaoJDBCImpl implements UserDao {
     @Override
     public void removeUserById(long id) {
         String query = "DELETE FROM users WHERE id = ?";
-
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, id);
             statement.executeUpdate();
-
             System.out.println("JDBC: Пользователь с ID='" + id + "' удалён из таблицы 'Users'. <OK>");
-
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             System.out.println("JDBC: Не удалось удалить пользователя с ID='" + id + "' из таблицы 'Users'! <ERROR>");
             e.printStackTrace();
         }

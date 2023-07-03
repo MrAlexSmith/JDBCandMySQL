@@ -57,7 +57,7 @@ public class Main {
     public static void main(String[] args) {
         UserService userService = new UserServiceImpl();
 
-        // Создание таблицы 'users'
+        // Создание таблицы 'users' в БД MySQL.
         userService.createUsersTable();
 
         // Добавление четырёх пользователей User в таблицу 'Users' БД MySQL.

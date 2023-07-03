@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
+ * На момент решения задачи PP_1_1_4 [TaskJDBC]
  * Класс 'Util' содержит логику настройки соединения с БД MySQL.
  * Имеет статический метод 'getConnection()', который возвращает соединение с БД MySQL.
  * В методе 'getConnection()' используется класс 'DriverManager',
