@@ -1,31 +1,61 @@
 package jm.task.core.jdbc.service;
 
+import jm.task.core.jdbc.dao.UserDao;
+import jm.task.core.jdbc.dao.UserDaoHibernateImpl;
 import jm.task.core.jdbc.model.User;
 
 import java.util.List;
 
+/**
+ * Класс 'UserServiceImpl' выполняет роль сервиса-посредника, с помощью которого выбирается способ подключения
+ * и управления БД MySQL:
+ *  1. Direct-SQL-запросы посредством драйвера JDBC;
+ *  2. Посредством фреймворка 'Hibernate'.
+ * Для работы первым способом, в конструкторе класса 'UserServiceImpl' создаётся объект 'UserDaoJDBCImpl',
+ * который имплементирует интерфейс 'userDao'.
+ * Для работы вторым способом, в конструкторе класса 'UserServiceImpl' создаётся объект 'UserDaoHibernateImpl',
+ * который имплементирует интерфейс 'userDao'.
+ * Все остальные переопределённые методы, непосредственно перенаправляют команды от исполняемого класса 'Main' в
+ * соответствующие классы, имплементирующие интерфейс 'UserDao'.
+ */
 public class UserServiceImpl implements UserService {
+    private final UserDao userDao;
+
+    /**
+     * В конструкторе определяется способ управления БД MySQL.
+     */
+    public UserServiceImpl() {
+//        this.userDao = new UserDaoJDBCImpl(); // Способ 1. Direct-SQL-запросы посредством драйвера JDBC.
+        this.userDao = new UserDaoHibernateImpl(); // Способ 2. Фреймворк 'Hibernate'.
+    }
+
+    @Override
     public void createUsersTable() {
-
+        userDao.createUsersTable();
     }
 
+    @Override
     public void dropUsersTable() {
-
+        userDao.dropUsersTable();
     }
 
+    @Override
     public void saveUser(String name, String lastName, byte age) {
-
+        userDao.saveUser(name, lastName, age);
     }
 
+    @Override
     public void removeUserById(long id) {
-
+        userDao.removeUserById(id);
     }
 
+    @Override
     public List<User> getAllUsers() {
-        return null;
+        return userDao.getAllUsers();
     }
 
+    @Override
     public void cleanUsersTable() {
-
+        userDao.cleanUsersTable();
     }
 }
